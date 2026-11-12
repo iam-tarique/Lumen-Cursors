@@ -8,10 +8,12 @@ THEME_NAME="Lumen"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Find the Lumen theme directory
-if [ -d "$SCRIPT_DIR/Lumen/cursors" ]; then
-    SOURCE_DIR="$SCRIPT_DIR/Lumen"
+if [ -d "$SCRIPT_DIR/Lumen-Linux/cursors" ]; then
+    SOURCE_DIR="$SCRIPT_DIR/Lumen-Linux"
 elif [ -d "$SCRIPT_DIR/cursors" ]; then
     SOURCE_DIR="$SCRIPT_DIR"
+elif [ -d "$SCRIPT_DIR/Lumen/cursors" ]; then
+    SOURCE_DIR="$SCRIPT_DIR/Lumen"
 else
     echo "Error: Cannot find cursor files in $SCRIPT_DIR"
     exit 1

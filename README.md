@@ -15,19 +15,47 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
 
 ---
 
+## Repository Structure
+
+The repository is organized into dedicated directories for each operating system:
+
+```text
+Lumen-Cursors/
+├── Lumen-Windows/        # 🪟 Windows 10 & 11 cursor scheme
+│   ├── Install.inf       # 1-click INF installer script
+│   └── *.cur, *.ani      # All 17 native Windows cursor files
+│
+├── Lumen-Linux/          # 🐧 Linux, Omarchy & Wayland/X11 cursor theme
+│   ├── index.theme       # Theme descriptor file
+│   ├── cursors/          # 141 compiled Xcursor binaries and standard aliases
+│   ├── install.sh        # Linux installer script
+│   └── uninstall.sh      # Linux uninstaller script
+│
+├── assets/               # Previews and documentation assets
+│   └── preview.png
+│
+├── install.sh            # Quick 1-step installer launcher for Linux
+├── uninstall.sh          # Quick uninstaller for Linux
+├── LICENSE               # GNU Lesser General Public License v3.0
+└── README.md             # Project documentation
+```
+
+---
+
 ## Features
 
+- **Dedicated Folders:** Completely separated Windows (`Lumen-Windows/`) and Linux (`Lumen-Linux/`) directories for clean organization.
 - **Cross-Platform Out of the Box:** Native support for Windows 10/11, Linux (Wayland & X11), and Omarchy (Hyprland).
 - **Full Role Coverage:** Covers all 17 pointer roles in Windows and 140+ standard X11 / FreeDesktop / CSS aliases in Linux.
 - **Smooth Animations:** High-frame-rate animated *Working in Background* (37 frames) and *Busy* (36 frames) spinners with exact 33ms delays.
 - **Multi-Resolution & HiDPI Ready:** Cursors scale crisply from 24px up to 96px for 4K displays and custom DPI scaling without blurring.
-- **One-Click Installers:** Automated setup scripts provided for both Windows (`Install.inf`) and Linux (`install.sh`).
+- **Automated Installers:** One-click automated setup scripts provided for both Windows (`Install.inf`) and Linux (`install.sh`).
 
 ---
 
 ## Installation
 
-### Linux & Omarchy (Wayland / X11)
+### 🐧 Linux & Omarchy (Wayland / X11)
 
 #### Option 1: Automated 1-Step Installation (Recommended)
 
@@ -37,16 +65,16 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
    chmod +x install.sh
    ./install.sh
    ```
-2. The installer automatically copies the files to `~/.local/share/icons/Lumen` (and `~/.icons/Lumen`), configures default fallbacks, and attempts to apply the theme to your active session.
+2. The installer automatically copies the theme to `~/.local/share/icons/Lumen` (and `~/.icons/Lumen`), configures default fallbacks, and attempts to apply the theme to your active session.
 
 #### Option 2: Manual Installation
 
-1. Copy the `Lumen` theme folder into your user icon directory:
+1. Copy the `Lumen-Linux` folder as `Lumen` into your user icon directory:
    ```bash
-   mkdir -p ~/.local/share/icons
-   cp -r Lumen ~/.local/share/icons/
+   mkdir -p ~/.local/share/icons/Lumen
+   cp -r Lumen-Linux/* ~/.local/share/icons/Lumen/
    ```
-   *(For system-wide installation across all users, copy to `/usr/share/icons/` using `sudo cp -r Lumen /usr/share/icons/`)*.
+   *(For system-wide installation across all users, copy to `/usr/share/icons/Lumen` using `sudo mkdir -p /usr/share/icons/Lumen && sudo cp -r Lumen-Linux/* /usr/share/icons/Lumen/`)*.
 
 2. Configure your desktop environment:
 
@@ -58,14 +86,14 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
      env = HYPRCURSOR_THEME,Lumen
      env = HYPRCURSOR_SIZE,24
      ```
-     To apply immediately in your current session:
+     To apply immediately in your active session:
      ```bash
      hyprctl setcursor Lumen 24
      ```
 
    - **GNOME / Ubuntu / Fedora:**
      Open **GNOME Tweaks** → **Appearance** → **Cursor** → select **Lumen**.  
-     Or via terminal:
+     Or run in terminal:
      ```bash
      gsettings set org.gnome.desktop.interface cursor-theme 'Lumen'
      ```
@@ -86,9 +114,9 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
 
 ---
 
-### Windows 10 & 11
+### 🪟 Windows 10 & 11
 
-1. Download or clone this repository and open the `Lumen` folder.
+1. Open the **`Lumen-Windows`** folder.
 2. Right-click on **`Install.inf`** and select **Install** (on Windows 11, click *Show more options* if needed).
 3. Open **Settings** → **Bluetooth & devices** → **Mouse** → **Additional mouse settings**.
 4. Switch to the **Pointers** tab, select **Lumen** from the **Scheme** drop-down menu, and click **Apply**.
@@ -97,7 +125,7 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
 
 ## Included Cursors & Roles
 
-| Role | Windows File | Linux / Wayland Targets |
+| Role | Windows File (`Lumen-Windows/`) | Linux / Wayland Targets (`Lumen-Linux/`) |
 | :--- | :--- | :--- |
 | **Normal Select** | `arrow.cur` | `default`, `left_ptr`, `arrow`, `top_left_arrow`, `right_ptr` |
 | **Link Select** | `link.cur` | `pointer`, `pointing_hand`, `hand`, `hand1`, `hand2`, `openhand` |
@@ -122,11 +150,11 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
 ## Uninstallation
 
 ### Linux & Omarchy
-Run the uninstall script:
+Run the uninstall script from the repository root:
 ```bash
 ./uninstall.sh
 ```
-Or manually delete the folder:
+Or delete the installed theme folder manually:
 ```bash
 rm -rf ~/.local/share/icons/Lumen ~/.icons/Lumen
 ```
