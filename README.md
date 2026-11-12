@@ -17,25 +17,24 @@ A clean, modern, high-precision cursor theme with a crisp light aesthetic, smoot
 
 ## Repository Structure
 
-The repository is organized into dedicated directories for each operating system:
+The repository is cleanly separated into two standalone folders:
 
 ```text
 Lumen-Cursors/
 ├── Lumen-Windows/        # 🪟 Windows 10 & 11 cursor scheme
-│   ├── Install.inf       # 1-click INF installer script
+│   ├── Install.inf       # Right-click 1-click INF installer
+│   ├── Uninstall.cmd     # 1-click uninstaller script
 │   └── *.cur, *.ani      # All 17 native Windows cursor files
 │
 ├── Lumen-Linux/          # 🐧 Linux, Omarchy & Wayland/X11 cursor theme
-│   ├── index.theme       # Theme descriptor file
+│   ├── index.theme       # Standard theme descriptor (Theme: Lumen)
 │   ├── cursors/          # 141 compiled Xcursor binaries and standard aliases
-│   ├── install.sh        # Linux installer script
-│   └── uninstall.sh      # Linux uninstaller script
+│   ├── install.sh        # Automated 1-step installer script
+│   └── uninstall.sh      # Automated uninstaller script
 │
-├── assets/               # Previews and documentation assets
+├── assets/               # Previews and graphics
 │   └── preview.png
 │
-├── install.sh            # Quick 1-step installer launcher for Linux
-├── uninstall.sh          # Quick uninstaller for Linux
 ├── LICENSE               # GNU Lesser General Public License v3.0
 └── README.md             # Project documentation
 ```
@@ -44,12 +43,12 @@ Lumen-Cursors/
 
 ## Features
 
-- **Dedicated Folders:** Completely separated Windows (`Lumen-Windows/`) and Linux (`Lumen-Linux/`) directories for clean organization.
+- **Self-Contained Folders:** Windows files live exclusively in `Lumen-Windows/`; Linux files live exclusively in `Lumen-Linux/`.
 - **Cross-Platform Out of the Box:** Native support for Windows 10/11, Linux (Wayland & X11), and Omarchy (Hyprland).
 - **Full Role Coverage:** Covers all 17 pointer roles in Windows and 140+ standard X11 / FreeDesktop / CSS aliases in Linux.
 - **Smooth Animations:** High-frame-rate animated *Working in Background* (37 frames) and *Busy* (36 frames) spinners with exact 33ms delays.
 - **Multi-Resolution & HiDPI Ready:** Cursors scale crisply from 24px up to 96px for 4K displays and custom DPI scaling without blurring.
-- **Automated Installers:** One-click automated setup scripts provided for both Windows (`Install.inf`) and Linux (`install.sh`).
+- **Dedicated Installers & Uninstallers:** Both platforms include dedicated automated scripts to install and uninstall effortlessly.
 
 ---
 
@@ -59,13 +58,15 @@ Lumen-Cursors/
 
 #### Option 1: Automated 1-Step Installation (Recommended)
 
-1. Open your terminal in the cloned repository directory:
-   ```bash
-   cd Lumen-Cursors
-   chmod +x install.sh
-   ./install.sh
-   ```
-2. The installer automatically copies the theme to `~/.local/share/icons/Lumen` (and `~/.icons/Lumen`), configures default fallbacks, and attempts to apply the theme to your active session.
+Run the installer directly from your terminal:
+```bash
+cd Lumen-Cursors/Lumen-Linux
+chmod +x install.sh
+./install.sh
+```
+*(Or from the repository root: `bash Lumen-Linux/install.sh`)*
+
+The installer automatically copies the theme to `~/.local/share/icons/Lumen` (and `~/.icons/Lumen`), configures default fallbacks, and applies the theme live to your active session.
 
 #### Option 2: Manual Installation
 
@@ -149,19 +150,27 @@ Lumen-Cursors/
 
 ## Uninstallation
 
-### Linux & Omarchy
-Run the uninstall script from the repository root:
+### 🐧 Linux & Omarchy
+
+Run the uninstall script:
 ```bash
-./uninstall.sh
+bash Lumen-Linux/uninstall.sh
 ```
-Or delete the installed theme folder manually:
+Or delete the installed folder manually:
 ```bash
 rm -rf ~/.local/share/icons/Lumen ~/.icons/Lumen
 ```
 
-### Windows
+### 🪟 Windows 10 & 11
+
+#### Option 1: Automated 1-Click Uninstaller (Recommended)
+1. Open the `Lumen-Windows` folder.
+2. Right-click **`Uninstall.cmd`** and select **Run as administrator**.  
+   *(The script deletes the registry scheme and removes the installed files from `C:\Windows\Cursors\Lumen_Cursors`)*.
+
+#### Option 2: Manual Removal
 1. Open **Additional mouse settings** → **Pointers** tab.
-2. Select **Windows Default** (or another scheme) from the drop-down and click **Apply**.
+2. Select **Windows Default** from the drop-down menu and click **Apply**.
 3. Select **Lumen** in the drop-down and click **Delete**.
 4. Delete the folder `C:\Windows\Cursors\Lumen_Cursors`.
 
